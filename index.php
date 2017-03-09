@@ -21,14 +21,17 @@ if ($do_fetch) {
 $tags = json_decode($respond);
 
 $latest = '0.0.0';
+$object = null;
 foreach ($tags as $tag) {
 	if (version_compare($tag->name, $latest, '>')) {
 		$latest = $tag->name;
+		$object = $tag;
 	}
 }
 
 header('Content-Type:text/plain');
-echo $latest;
+echo $latest, PHP_EOL;
+print_r($object);
 
 /*
 echo $tag->name, PHP_EOL;
